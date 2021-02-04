@@ -42,11 +42,11 @@ you to have a more fine control.
 
 
 class YamllintRule(AnsibleLintRule):
-    id = 'YAML'
+    id = 'yaml'
     shortdesc = 'Violations reported by yamllint'
     description = DESCRIPTION
     severity = 'VERY_LOW'
-    tags = ['formatting', 'experimental', 'yamllint']
+    tags = ['formatting', 'yaml']
     version_added = 'v5.0.0'
     config = None
     if "yamllint.config" in sys.modules:

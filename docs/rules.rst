@@ -26,26 +26,11 @@ for each available rule, use the ``-T`` option.
 The following shows the available tags in an example set of rules, and the
 rules associated with each tag:
 
-.. code-block:: console
 
-    $ ansible-lint -v -T
-
-    behaviour ['[503]']
-    bug ['[304]']
-    command-shell ['[305]', '[302]', '[304]', '[306]', '[301]', '[303]']
-    deprecations ['[105]', '[104]', '[103]', '[101]', '[102]']
-    experimental ['[208]']
-    formatting ['[104]', '[203]', '[201]', '[204]', '[206]', '[205]', '[202]']
-    idempotency ['[301]']
-    idiom ['[601]', '[602]']
-    metadata ['[701]', '[704]', '[703]', '[702]']
-    module ['[404]', '[401]', '[403]', '[402]']
-    oddity ['[501]']
-    readability ['[502]']
-    repeatability ['[401]', '[403]', '[402]']
-    resources ['[302]', '[303]']
-    safety ['[305]']
-    task ['[502]', '[503]', '[504]', '[501]']
+.. command-output:: ansible-lint -v -T
+   :cwd: ..
+   :returncode: 0
+   :nostderr:
 
 To run just the *idempotency* rules, for example, run the following:
 
@@ -56,20 +41,13 @@ To run just the *idempotency* rules, for example, run the following:
 Excluding Rules
 ```````````````
 
-To exclude rules from the available set of rules, use the ``-x SKIP_LIST``
+To exclude rules using their identificators or tags, use the ``-x SKIP_LIST``
 option. For example, the following runs all of the rules except those with the
-tags *readability* and *safety*:
+tags *formatting* and *metadata*:
 
 .. code-block:: bash
 
-    $ ansible-lint -x readability,safety playbook.yml
-
-It's also possible to skip specific rules by passing the rule ID. For example,
-the following excludes rule *502*:
-
-.. code-block:: bash
-
-    $ ansible-lint -x 502 playbook.yml
+    $ ansible-lint -x formatting,metadata playbook.yml
 
 Ignoring Rules
 ``````````````

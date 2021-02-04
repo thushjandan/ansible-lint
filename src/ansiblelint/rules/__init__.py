@@ -251,7 +251,6 @@ class RulesCollection:
     def listtags(self) -> str:
         tag_desc = {
             "behaviour": "Indicates a bad practice or behavior",
-            "bug": "Likely wrong usage pattern",
             "command-shell": "Specific to use of command and shell modules",
             "core": "Related to internal implementation of the linter",
             "deprecations": "Indicate use of features that are removed from Ansible",
@@ -261,25 +260,21 @@ class RulesCollection:
                 "Possible indication that consequent runs would produce different results",
             "idiom": "Anti-pattern detected, likely to cause undesired behavior",
             "metadata": "Invalid metadata, likely related to galaxy, collections or roles",
-            "module": "Incorrect module usage",
-            "readability": "Reduce code readability",
-            "repeatability": "Action that may produce different result between runs",
-            "resources": "Unoptimal feature use",
-            "safety": "Increase security risk",
-            "task": "Rules specific to tasks",
-            "unpredictability": "This will produce unexpected behavior when run",
+            "yaml": "External linter which will also produce its own rule codes."
         }
 
         tags = defaultdict(list)
         for rule in self.rules:
             for tag in rule.tags:
                 tags[tag].append(rule.id)
-        result = "# List of tags and how they are used\n"
+        result = "# List of tags and rules they cover\n"
         for tag in sorted(tags):
             desc = tag_desc.get(tag, None)
             if desc:
                 result += f"{tag}:  # {desc}\n"
             else:
                 result += f"{tag}:\n"
-            result += f"  rules: [{', '.join(tags[tag])}]\n"
+            # result += f"  rules:\n"
+            for id in tags[tag]:
+                result += f"  - {id}\n"
         return result

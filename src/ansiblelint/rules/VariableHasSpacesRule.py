@@ -10,7 +10,7 @@ from ansiblelint.utils import nested_items
 
 
 class VariableHasSpacesRule(AnsibleLintRule):
-    id = '206'
+    id = 'var-spacing'
     base_msg = 'Variables should have spaces before and after: '
     shortdesc = base_msg + ' {{ var_name }}'
     description = 'Variables should have spaces before and after: ``{{ var_name }}``'
